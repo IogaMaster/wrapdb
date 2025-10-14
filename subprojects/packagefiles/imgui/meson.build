@@ -2,8 +2,8 @@ project(
   'imgui',
   'cpp',
   license: 'MIT',
-  version: '1.91.6',
-  meson_version: '>=0.50.0',
+  version: '1.92.3',
+  meson_version: '>=0.54.0',
 )
 
 if host_machine.system() == 'darwin'
@@ -12,12 +12,12 @@ endif
 
 include_dirs = include_directories('.', 'backends')
 sources = files(
+  'misc/cpp/imgui_stdlib.cpp',
   'imgui.cpp',
   'imgui_demo.cpp',
   'imgui_draw.cpp',
   'imgui_tables.cpp',
   'imgui_widgets.cpp',
-  'misc/cpp/imgui_stdlib.cpp',
 )
 
 cpp = meson.get_compiler('cpp')
@@ -204,3 +204,5 @@ imgui_dep = declare_dependency(
   include_directories: include_dirs,
   link_with: imgui,
 )
+
+meson.override_dependency('imgui', imgui_dep)
